@@ -563,6 +563,95 @@ html {
     box-sizing: border-box;
   }
 }
+/* --- About & Skills Spacing, Height Reset & Overlap Fixes --- */
+#about,
+#skills,
+#work,
+#contact,
+section#about,
+section#skills,
+.framer-4bcbge,
+.framer-1stkhgm,
+.framer-1pspeot {
+  scroll-margin-top: 110px !important;
+}
+
+.framer-1pspeot {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 36px !important;
+  padding: 48px 0 24px 0 !important;
+  box-sizing: border-box !important;
+}
+
+.framer-4bcbge,
+.framer-1stkhgm {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Eliminate fixed 288px and 147px heights */
+.framer-1dctc6x,
+.framer-1v2oj63,
+.framer-3odj7 .framer-1dctc6x,
+.framer-3odj7 .framer-1v2oj63 {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  position: relative !important;
+  margin: 0 !important;
+}
+
+.framer-1dctc6x p,
+.framer-1v2oj63 p {
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}
+
+/* Crisp Section Labels for About & Skills - No background bleed or full-width bars */
+.framer-nkq68n,
+.framer-1ug0hqj,
+.framer-3odj7 .framer-nkq68n,
+.framer-3odj7 .framer-1ug0hqj {
+  width: fit-content !important;
+  max-width: fit-content !important;
+  display: inline-block !important;
+  margin-bottom: 4px !important;
+  background: transparent !important;
+}
+
+.framer-nkq68n p,
+.framer-1ug0hqj p,
+.framer-nkq68n .framer-text,
+.framer-1ug0hqj .framer-text {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: fit-content !important;
+  max-width: fit-content !important;
+  background: var(--token-69cb955b-ea27-4b7a-ac21-85847de453ff, #eceae1) !important;
+  --framer-text-background-color: transparent !important;
+  background-color: var(--token-69cb955b-ea27-4b7a-ac21-85847de453ff, #eceae1) !important;
+  color: var(--token-6c6d78a7-2694-4d68-b01e-e9c8c3f74eba, #121212) !important;
+  font-family: "DM Mono", monospace !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  padding: 4px 10px !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
 </style>
 
 <script id="executive-enhancements-inline">
@@ -754,6 +843,25 @@ html {
         a.setAttribute("target", "_self");
       } else if (href.startsWith("/") || href.startsWith("#") || href.startsWith("./")) {
         a.setAttribute("target", "_self");
+      }
+    });
+
+
+    // Fix About and Skills heights and labels
+    document.querySelectorAll(".framer-1dctc6x, .framer-1v2oj63").forEach(function(el) {
+      el.style.height = "auto";
+      el.style.minHeight = "auto";
+    });
+    document.querySelectorAll(".framer-1pspeot, .framer-4bcbge, .framer-1stkhgm").forEach(function(el) {
+      el.style.height = "auto";
+      el.style.minHeight = "auto";
+    });
+    document.querySelectorAll(".framer-nkq68n, .framer-1ug0hqj").forEach(function(el) {
+      el.style.width = "fit-content";
+      var p = el.querySelector("p");
+      if (p) {
+        p.style.width = "fit-content";
+        p.style.display = "inline-flex";
       }
     });
 

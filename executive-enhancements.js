@@ -189,6 +189,25 @@
       }
     });
 
+
+    // Fix About and Skills heights and labels
+    document.querySelectorAll(".framer-1dctc6x, .framer-1v2oj63").forEach(function(el) {
+      el.style.height = "auto";
+      el.style.minHeight = "auto";
+    });
+    document.querySelectorAll(".framer-1pspeot, .framer-4bcbge, .framer-1stkhgm").forEach(function(el) {
+      el.style.height = "auto";
+      el.style.minHeight = "auto";
+    });
+    document.querySelectorAll(".framer-nkq68n, .framer-1ug0hqj").forEach(function(el) {
+      el.style.width = "fit-content";
+      var p = el.querySelector("p");
+      if (p) {
+        p.style.width = "fit-content";
+        p.style.display = "inline-flex";
+      }
+    });
+
     // Remove empty paragraphs
     document.querySelectorAll("p").forEach(function(p) {
       if (p.innerHTML.trim() === '<br class="framer-text trailing-break">' || p.innerHTML.trim() === '<br>') {
