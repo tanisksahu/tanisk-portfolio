@@ -137,9 +137,8 @@
       });
     }
 
-        // 7. Executive Conversion CTA Section
+            // 7. Executive Conversion CTA Section
     var footer = document.querySelector("footer.framer-Js1zl") || document.querySelector("footer");
-    // Remove duplicate CTA sections if any
     var existingCtas = document.querySelectorAll(".executive-cta-section");
     if (existingCtas.length > 1) {
       for (var i = 1; i < existingCtas.length; i++) {
@@ -156,14 +155,11 @@
             <span class="cta-pulse-dot"></span>
             <span>Available for Freelance &amp; Projects</span>
           </div>
-          <h2 class="cta-main-title">Have a project in mind? Let's collaborate.</h2>
-          <p class="cta-description">Presentations, business proposals, or visual branding &mdash; let's turn your vision into high-impact visuals.</p>
+          <h2 class="cta-compact-title">Got an idea or deck to build?</h2>
+          <p class="cta-compact-subtext">Let's turn your raw data and ideas into high-impact visuals.</p>
           <div class="cta-actions-group">
-            <a href="https://wa.me/919479955283" target="_blank" rel="noopener noreferrer" class="cta-btn-primary">
-              Chat on WhatsApp &rarr;
-            </a>
-            <a href="https://www.linkedin.com/in/tanisksahu9479955" target="_blank" rel="noopener noreferrer" class="cta-btn-secondary">
-              View LinkedIn Profile
+            <a href="https://wa.me/919479955283" target="_blank" rel="noopener noreferrer" class="cta-btn-pill">
+              Start a conversation &rarr;
             </a>
           </div>
         </div>
