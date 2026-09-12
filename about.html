@@ -311,66 +311,289 @@ div[data-framer-name="Cover Placeholder Label"] {
 
 
 
-<style>
-/* Category filter button group layout */
-.framer-1tn2ve6-container {
-  display: none !important;
+
+
+
+<style id="site-layout-header-enhancements">
+/* ==========================================================================
+   1. PREVENT WHITE SCREEN ON MINIMIZE / RESIZE / TAB SWITCH
+   ========================================================================== */
+html, body {
+  background-color: var(--token-69cb955b-ea27-4b7a-ac21-85847de453ff, #f6f7f1) !important;
 }
-.framer-1lm3wpl,
-.framer-rV3nr .framer-1lm3wpl,
-.framer-rV3nr.framer-v-1witwpd .framer-1lm3wpl {
-  display: grid !important;
-  grid-template-columns: repeat(6, 1fr) !important;
-  grid-auto-rows: auto !important;
-  gap: 6px 3px !important;
-  width: 311px !important;
+
+[data-framer-appear-id],
+[data-framer-name="Column"],
+[data-framer-name="Title"],
+[data-framer-name="Container"],
+section[data-framer-name="Hero"] * {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ==========================================================================
+   2. REMOVE LEFT SIDEBAR ACROSS ALL PAGES & EXPAND CONTENT TO FULL WIDTH
+   ========================================================================== */
+aside,
+[data-framer-name="Designer Profile"],
+[data-framer-name="L"],
+[data-framer-name="M"],
+.framer-1jwo6ju,
+.framer-rV3nr,
+.framer-ltzboe-container,
+.framer-tljdp4-container,
+.framer-1jpx0ys-container,
+.framer-1hp730w-container,
+.framer-zabkp8-container,
+.framer-1iutnq1-container {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Expand main content container to 100% full width, centered */
+main,
+main[data-framer-name="Main"],
+.framer-1mc8iqz,
+.framer-fvlq8t,
+.framer-wccve9,
+.framer-1ehra2h,
+.framer-1ady5ny,
+.framer-1jrkqx7 {
+  width: 100% !important;
   max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Hero section full width centered */
+section[data-framer-name="Hero"],
+.framer-lxrexk,
+.framer-56wrqr,
+.framer-rvg7i2,
+.framer-1oqsfkl,
+.framer-lek373,
+.framer-1dwcytt {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+  flex: none !important;
+}
+
+/* Main content columns inside hero centered */
+section[data-framer-name="Hero"] > div[data-framer-name="Column"],
+.framer-gvsxe8,
+.framer-gt01h,
+.framer-ozfcqt,
+.framer-bicwtd,
+.framer-1lrtgi5,
+.framer-12r4r74,
+.framer-va5zmh {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  flex: none !important;
+  padding: 70px 0 0 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  gap: 30px !important;
+}
+
+/* Title and headings centered */
+.framer-1d6cwau,
+.framer-1n562e4,
+.framer-11ybr73,
+.framer-1cxby2o,
+.framer-75k4qg,
+.framer-1qbgiv1,
+.framer-gfuowa,
+[data-framer-name="Title"] {
+  width: 100% !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+[data-framer-name="Title"] h1,
+[data-framer-name="Title"] p,
+[data-framer-name="Title"] div {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Portfolio grids / card stacks centered */
+.framer-phr8ll,
+section[data-framer-name="Hero"] section,
+.framer-1h3qlqe,
+.framer-4tmgqd {
+  width: 100% !important;
+  max-width: 1140px !important;
+  margin: 0 auto !important;
   justify-content: center !important;
   justify-items: center !important;
-  align-items: center !important;
 }
-.category-top-row,
-.category-bottom-row {
-  grid-column: 1 / span 6 !important;
+
+/* Hide toolbar on index */
+.portfolio-filter-toolbar {
+  display: none !important;
+}
+
+/* ==========================================================================
+   3. PORTFOLIO CATEGORY FILTER PILLS ALIGNMENT (PORTFOLIO PAGE ONLY)
+   ========================================================================== */
+.portfolio-category-pills-row {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+  max-width: 800px !important;
+  margin: 15px auto 25px auto !important;
+  padding: 0 !important;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+.portfolio-filter-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 7px 18px !important;
+  background-color: var(--token-6c6d78a7-2694-4d68-b01e-e9c8c3f74eba, rgb(51, 51, 51)) !important;
+  color: var(--token-69cb955b-ea27-4b7a-ac21-85847de453ff, rgb(248, 248, 246)) !important;
+  font-family: "Apfel Grotezk", Inter, -apple-system, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+
+.portfolio-filter-pill:hover {
+  background-color: rgb(20, 20, 20) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ==========================================================================
+   4. STICKY GLASSMORPHISM / BLURRED HEADER ON SCROLL
+   ========================================================================== */
+.framer-i8cl36,
+div[data-framer-name="Header"],
+.framer-VKp1B > div > .framer-i8cl36 {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  z-index: 1000 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  background-color: rgba(243, 240, 233, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease, backdrop-filter 0.2s ease !important;
+}
+
+header.framer-UJ6FI,
+header[data-framer-name="Desktop"],
+.framer-19x81c4-container,
+.framer-2tq8ne {
+  background: transparent !important;
+  background-color: transparent !important;
+  max-width: 1200px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Header Title & Avatar horizontal alignment */
+.framer-kaueld,
+.framer-UJ6FI .framer-kaueld {
+  width: auto !important;
+  min-width: 180px !important;
+  flex: none !important;
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  justify-content: center !important;
-  gap: 6px !important;
-  width: 100% !important;
 }
-.category-bottom-row {
-  justify-content: center !important;
+
+.framer-1a3jy5p,
+.framer-UJ6FI .framer-1a3jy5p {
+  width: auto !important;
+  flex: none !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-decoration: none !important;
 }
-.framer-1jqldeq-container {
-  grid-column: 1 / span 2 !important;
-  grid-row: 1 !important;
-  width: 90px !important;
-  justify-self: center !important;
+
+.framer-1d1r184,
+.framer-UJ6FI .framer-1d1r184,
+.framer-1d1r184 p,
+.framer-UJ6FI .framer-1d1r184 p {
+  white-space: nowrap !important;
+  word-break: normal !important;
+  word-wrap: normal !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-block !important;
+  margin: 0 !important;
 }
-.framer-17jdor-container {
-  grid-column: 3 / span 2 !important;
-  grid-row: 1 !important;
-  width: 90px !important;
-  justify-self: center !important;
+
+.framer-i8cl36 *,
+div[data-framer-name="Header"] * {
+  opacity: 1;
 }
-.framer-dejzpi-container {
-  grid-column: 5 / span 2 !important;
-  grid-row: 1 !important;
-  width: 90px !important;
-  justify-self: center !important;
-}
-.framer-1elb5m7-container {
-  grid-column: 2 / span 2 !important;
-  grid-row: 2 !important;
-  width: 90px !important;
-  justify-self: center !important;
-}
-.framer-ubf4m6-container {
-  grid-column: 4 / span 2 !important;
-  grid-row: 2 !important;
-  width: 90px !important;
-  justify-self: center !important;
+
+.framer-i8cl36 img,
+.framer-i8cl36 a,
+.framer-i8cl36 p,
+.framer-i8cl36 span,
+.framer-i8cl36 svg,
+.framer-i8cl36 button {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 </style>
 </head>
@@ -416,6 +639,58 @@ div[data-framer-name="Cover Placeholder Label"] {
 
     <!-- End of bodyEnd -->
 
+
+
+<script id="site-layout-header-script">
+window.__framer_disable_appear_effects_optimization__ = true;
+(function() {
+  function enforceLayoutAndHeader() {
+    // 1. Force all appear elements to be visible so tab minimize/restore never turns white
+    document.querySelectorAll('[data-framer-appear-id]').forEach(function(el) {
+      el.style.setProperty('opacity', '1', 'important');
+      el.style.setProperty('visibility', 'visible', 'important');
+    });
+
+    // 2. Purge / hide left sidebar elements across all pages
+    var sidebars = document.querySelectorAll('aside, .framer-ltzboe-container, .framer-tljdp4-container, .framer-1jpx0ys-container, .framer-1hp730w-container, .framer-zabkp8-container, .framer-1jwo6ju, .framer-1iutnq1-container');
+    sidebars.forEach(function(el) {
+      el.style.setProperty('display', 'none', 'important');
+    });
+
+    // 3. Ensure Header is sticky with frosted blur
+    var header = document.querySelector('.framer-i8cl36, [data-framer-name="Header"]');
+    if (header) {
+      header.style.setProperty('position', 'sticky', 'important');
+      header.style.setProperty('top', '0', 'important');
+      header.style.setProperty('left', '0', 'important');
+      header.style.setProperty('transform', 'none', 'important');
+      header.style.setProperty('z-index', '1000', 'important');
+      header.style.setProperty('width', '100%', 'important');
+      header.style.setProperty('background-color', 'rgba(243, 240, 233, 0.8)', 'important');
+      header.style.setProperty('backdrop-filter', 'blur(12px)', 'important');
+      header.style.setProperty('-webkit-backdrop-filter', 'blur(12px)', 'important');
+      header.style.setProperty('border-bottom', '1px solid rgba(0, 0, 0, 0.06)', 'important');
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enforceLayoutAndHeader);
+  } else {
+    enforceLayoutAndHeader();
+  }
+  window.addEventListener('load', enforceLayoutAndHeader);
+  window.addEventListener('visibilitychange', enforceLayoutAndHeader);
+  window.addEventListener('focus', enforceLayoutAndHeader);
+  setTimeout(enforceLayoutAndHeader, 100);
+  setTimeout(enforceLayoutAndHeader, 400);
+  setTimeout(enforceLayoutAndHeader, 1000);
+
+  try {
+    var observer = new MutationObserver(enforceLayoutAndHeader);
+    observer.observe(document.body, { childList: true, subtree: true });
+  } catch(e) {}
+})();
+</script>
 </body>
 
 </html>
