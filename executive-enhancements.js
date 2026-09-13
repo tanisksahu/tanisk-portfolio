@@ -1,4 +1,6 @@
 (function() {
+  var aboutHTML = "<section class=\"about-layered-section\" id=\"about\">\n  <div class=\"about-layered-container\">\n    <div class=\"about-layered-grid\">\n      <!-- Profile Card (Portrait Card with soft rounded corners & overlaid gradient badge) -->\n      <div class=\"about-portrait-card\">\n        <div class=\"about-image-frame\">\n          <img \n            src=\"https://framerusercontent.com/images/cSitR3tb8gMmODeRtZEglWGNmI.jpg?width=697&amp;height=1020\" \n            alt=\"Tanisk Sahu - Graphic &amp; Document Designer\" \n            class=\"about-portrait-img\"\n          />\n          <div class=\"about-gradient-badge\">\n            <span class=\"badge-sparkle\">✦</span>\n            <span>Designing visual systems &amp; executive presentations</span>\n          </div>\n        </div>\n        \n        <div class=\"about-portrait-content\">\n          <div class=\"about-portrait-titles\">\n            <h2 class=\"about-name\">Tanisk Sahu</h2>\n            <p class=\"about-role\">Graphic &amp; Document Designer</p>\n          </div>\n          \n          <div class=\"about-metric-badges\">\n            <span class=\"metric-pill\">\n              <span class=\"metric-dot\"></span>\n              <strong>10+</strong> Projects Built\n            </span>\n            <span class=\"metric-pill\">\n              <span class=\"metric-dot\"></span>\n              <strong>Fast</strong> Turnaround\n            </span>\n            <span class=\"metric-pill\">\n              <span class=\"metric-dot\"></span>\n              <strong>Global</strong> Remote\n            </span>\n          </div>\n        </div>\n      </div>\n\n      <!-- Right Column: Bio & Interactive Feature Grid -->\n      <div class=\"about-content-card\">\n        <div class=\"about-bio-box\">\n          <span class=\"about-eyebrow\">About the Designer</span>\n          <p class=\"about-bio-lead\">\n            I transform complex corporate data, investor pitch decks, and brand narratives into clean, boardroom-ready visual systems engineered for leadership review.\n          </p>\n          <p class=\"about-bio-secondary\">\n            Partnering with founders, institutions, and creative teams worldwide, I deliver high-stakes visual collateral that pairs structure-first clarity with compelling storytelling.\n          </p>\n        </div>\n\n        <div class=\"about-chips-section\">\n          <span class=\"about-chips-heading\">Capabilities &amp; Methodology</span>\n          <div class=\"about-chips-grid\">\n            <!-- Chip 1: Core Focus -->\n            <div class=\"feature-chip feature-chip-focus\">\n              <div class=\"chip-icon-wrap\">🎯</div>\n              <div class=\"chip-content\">\n                <span class=\"chip-label\">Core Focus</span>\n                <p class=\"chip-desc\">Data-driven Decks, Reports, and Brand Storytelling</p>\n              </div>\n            </div>\n\n            <!-- Chip 2: Toolkit -->\n            <div class=\"feature-chip feature-chip-toolkit\">\n              <div class=\"chip-icon-wrap\">🛠️</div>\n              <div class=\"chip-content\">\n                <span class=\"chip-label\">Toolkit</span>\n                <p class=\"chip-desc\">Canva Pro · Figma · React · Document Design</p>\n              </div>\n            </div>\n\n            <!-- Chip 3: Approach -->\n            <div class=\"feature-chip feature-chip-approach\">\n              <div class=\"chip-icon-wrap\">⚡</div>\n              <div class=\"chip-content\">\n                <span class=\"chip-label\">Approach</span>\n                <p class=\"chip-desc\">Structure-first clarity engineered for corporate &amp; leadership review</p>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>";
+
   function applyExecutiveRefactoring() {
     // 1. Accessibility & Avatar
     var avatars = document.querySelectorAll('img[src*="T3UFO0ocLkATV6di50KXnRKPK4"], img[alt*="Mozdir"]');
@@ -6,7 +8,7 @@
       img.setAttribute("alt", "Tanisk Sahu - Graphic & Document Designer");
     });
 
-    // 2. Hero Headline & Subtitle
+    // 2. Hero Headline & Subtitle (Prompt #1)
     var h1 = document.querySelector(".framer-15t37vz h1, h1.framer-text, .framer-1j7loxx h1");
     if (h1 && (h1.textContent.includes("Graphic") || h1.textContent.includes("-Graphic") || h1.innerHTML.includes("<br"))) {
       h1.innerHTML = "Tanisk Sahu";
@@ -28,45 +30,70 @@
       taglineBlock.textContent = "Transforming complex data, corporate decks, and brand narratives into clean, boardroom-ready visual assets.";
     }
 
-    // 4. Sidebar Deliverables List
-    var asideP = document.querySelector("aside .framer-1vb4gx7 p, aside p strong");
-    if (asideP && asideP.textContent.includes("Presentation Decks")) {
-      var asideContainer = asideP.closest(".framer-1vb4gx7") || asideP.parentElement;
-      if (asideContainer && !asideContainer.querySelector(".sidebar-deliverables-pills-container")) {
-        asideContainer.innerHTML = `
-          <div class="sidebar-deliverables-pills-container">
-            <div class="deliverable-category-block">
-              <span class="deliverable-category-heading">Corporate &amp; Decks</span>
-              <div class="pill-badge-flex">
-                <span class="deliverable-pill">Presentation Decks</span>
-                <span class="deliverable-pill">Business Proposals</span>
-                <span class="deliverable-pill">Corporate Reports</span>
-                <span class="deliverable-pill">Executive Resumes</span>
-              </div>
-            </div>
-            <div class="deliverable-category-block">
-              <span class="deliverable-category-heading">Editorial &amp; Print</span>
-              <div class="pill-badge-flex">
-                <span class="deliverable-pill">Brochures &amp; Trifolds</span>
-                <span class="deliverable-pill">E-Magazines</span>
-                <span class="deliverable-pill">Posters</span>
-              </div>
-            </div>
-            <div class="deliverable-category-block">
-              <span class="deliverable-category-heading">Brand &amp; Marketing</span>
-              <div class="pill-badge-flex">
-                <span class="deliverable-pill">Brand Kits</span>
-                <span class="deliverable-pill">Visual Identity</span>
-                <span class="deliverable-pill">Social Media Suites</span>
-                <span class="deliverable-pill">Ad Campaigns</span>
-              </div>
-            </div>
-          </div>
-        `;
+    // 4. Header elements visibility & un-hide name
+    document.querySelectorAll('.framer-1a3jy5p, .framer-1d1r184, .framer-1d1r184 p, .framer-kaueld, .framer-v-1lv8og7 .framer-1a3jy5p, .framer-v-1lv8og7 .framer-1d1r184, .framer-v-1lv8og7 .framer-1d1r184 p, .framer-v-1lv8og7 .framer-1rmqkq8-container, .framer-v-1lv8og7 .framer-nwjd5, .framer-v-1lv8og7 .framer-1uqrkxv, .framer-v-1lv8og7 .framer-a5cnfa, .framer-v-1lv8og7 .framer-1djcy07, .framer-v-1lv8og7 .framer-tw9bvt').forEach(function(el) {
+      el.style.setProperty('opacity', '1', 'important');
+      el.style.setProperty('visibility', 'visible', 'important');
+      el.style.setProperty('transform', 'none', 'important');
+    });
+
+    document.querySelectorAll('.framer-v-1lv8og7 .framer-kaueld, .framer-v-1lv8og7 .framer-1a3jy5p, .framer-v-1lv8og7 .framer-1d1r184').forEach(function(el) {
+      el.style.setProperty('width', 'auto', 'important');
+      el.style.setProperty('min-width', 'max-content', 'important');
+      el.style.setProperty('flex', '0 0 auto', 'important');
+      el.style.setProperty('opacity', '1', 'important');
+      el.style.setProperty('visibility', 'visible', 'important');
+      el.style.setProperty('display', 'inline-flex', 'important');
+    });
+
+    document.querySelectorAll('.framer-v-1lv8og7 .framer-1d1r184 p').forEach(function(el) {
+      el.style.setProperty('display', 'inline-block', 'important');
+      el.style.setProperty('opacity', '1', 'important');
+      el.style.setProperty('visibility', 'visible', 'important');
+      el.style.setProperty('color', '#121212', 'important');
+      el.style.setProperty('font-size', '15px', 'important');
+      el.style.setProperty('font-weight', '700', 'important');
+      el.style.setProperty('white-space', 'nowrap', 'important');
+    });
+
+    // 5. Remove Mobile Footer Highlight/Blue Tap Glitch (Prompt #2)
+    document.querySelectorAll('footer, footer *, nav, nav *, .framer-hd7hn4, .framer-3lrowh, .framer-KMgvH, [data-highlight="true"]').forEach(function(el) {
+      el.style.setProperty('-webkit-tap-highlight-color', 'transparent', 'important');
+      el.style.setProperty('tap-highlight-color', 'transparent', 'important');
+      if (el.hasAttribute('tabindex') && el.tagName !== 'A' && el.tagName !== 'BUTTON') {
+        el.removeAttribute('tabindex');
+      }
+      if (el.hasAttribute('data-highlight') && el.tagName !== 'A') {
+        el.removeAttribute('data-highlight');
+      }
+    });
+
+    // 6. Redesign About Section: Layered Card UI (Prompt #3)
+    document.querySelectorAll('.framer-1kp3ivk, .framer-3xy145, .framer-lvsyod').forEach(function(el) {
+      el.style.setProperty('display', 'none', 'important');
+    });
+
+    var isAboutPage = window.location.pathname.includes('/about') || document.querySelector('.framer-bi2bbh') || document.querySelector('.framer-11ybr73');
+    if (isAboutPage) {
+      var aboutContainer = document.querySelector('.framer-bi2bbh') || document.querySelector('.framer-xgmf58') || document.querySelector('.framer-11ybr73');
+      if (aboutContainer && !aboutContainer.querySelector('.about-layered-section')) {
+        var oldBento = aboutContainer.querySelector('.about-bento-section, .about-modern-section');
+        if (oldBento) oldBento.remove();
+        
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML = aboutHTML;
+        aboutContainer.appendChild(wrapper.firstElementChild);
       }
     }
 
-    // 5. Card Titles & Category Attributes
+    var homeAbout = document.getElementById('about');
+    if (homeAbout && !homeAbout.classList.contains('about-layered-section')) {
+      var homeWrapper = document.createElement('div');
+      homeWrapper.innerHTML = aboutHTML;
+      homeAbout.parentNode.replaceChild(homeWrapper.firstElementChild, homeAbout);
+    }
+
+    // 7. Card Titles & Category Attributes
     var cardMappings = [
       { href: "firjvu21bf5hzyk", title: "Brand Campaign & Ad Creatives", cat: "marketing" },
       { href: "6tu80vzaccr2vap", title: "Product Promotion & Social Suite", cat: "marketing" },
@@ -91,7 +118,6 @@
             h3.textContent = item.title;
           }
         }
-        // Affordance pill
         var cover = card.querySelector('[data-framer-name="Canva Cover Placeholder"]');
         if (cover && !cover.querySelector(".canva-interactive-pill")) {
           var pill = document.createElement("div");
@@ -102,42 +128,17 @@
       }
     });
 
-    // 6. Filter Toolbar
-    var workSection = document.getElementById("work") || document.querySelector(".framer-1h3qlqe");
-    if (workSection && !document.querySelector(".portfolio-filter-toolbar")) {
-      var toolbar = document.createElement("div");
-      toolbar.className = "portfolio-filter-toolbar";
-      toolbar.innerHTML = `
-        <button class="filter-tab-btn active" data-filter="all">All</button>
-        <button class="filter-tab-btn" data-filter="decks">PPTs &amp; Decks</button>
-        <button class="filter-tab-btn" data-filter="reports">Proposals &amp; Reports</button>
-        <button class="filter-tab-btn" data-filter="editorial">Brochures &amp; Editorial</button>
-        <button class="filter-tab-btn" data-filter="marketing">Posters &amp; Marketing</button>
-      `;
-      workSection.insertAdjacentElement("beforebegin", toolbar);
+    // 8. Purge Filter Toolbar from home/portfolio as requested by user
+    document.querySelectorAll(".portfolio-filter-toolbar, .portfolio-category-pills-row").forEach(function(tb) {
+      tb.remove();
+    });
+    // Ensure all project cards are visible
+    document.querySelectorAll('[data-framer-name="Canva Project Card"]').forEach(function(c) {
+      c.style.display = "";
+      c.style.opacity = "1";
+    });
 
-      // Attach filter events
-      toolbar.querySelectorAll(".filter-tab-btn").forEach(function(btn) {
-        btn.addEventListener("click", function() {
-          toolbar.querySelectorAll(".filter-tab-btn").forEach(function(b) { b.classList.remove("active"); });
-          this.classList.add("active");
-          var filter = this.getAttribute("data-filter");
-
-          document.querySelectorAll('[data-framer-name="Canva Project Card"]').forEach(function(c) {
-            var cat = c.getAttribute("data-project-category") || "";
-            if (filter === "all" || cat === filter) {
-              c.style.display = "";
-              c.style.opacity = "1";
-            } else {
-              c.style.display = "none";
-              c.style.opacity = "0";
-            }
-          });
-        });
-      });
-    }
-
-            // 7. Executive Conversion CTA Section
+    // 9. Executive Conversion CTA Section
     var footer = document.querySelector("footer.framer-Js1zl") || document.querySelector("footer");
     var existingCtas = document.querySelectorAll(".executive-cta-section");
     if (existingCtas.length > 1) {
@@ -166,75 +167,25 @@
       `;
       footer.insertAdjacentElement("beforebegin", cta);
     }
-
-    // 8. Navigation Links & Target Self
-    document.querySelectorAll("a").forEach(function(a) {
-      var href = a.getAttribute("href");
-      if (!href) return;
-      if (href === "./" || href === ".") {
-        a.setAttribute("href", "/");
-        a.setAttribute("target", "_self");
-      } else if (href === "./about" || href === "/about") {
-        a.setAttribute("href", "#about");
-        a.setAttribute("target", "_self");
-      } else if (href === "./portfolio" || href === "/portfolio") {
-        a.setAttribute("href", "#work");
-        a.setAttribute("target", "_self");
-      } else if (href === "./contact" && a.textContent.trim().toLowerCase() === "contact") {
-        a.setAttribute("href", "#contact");
-        a.setAttribute("target", "_self");
-      } else if (href.startsWith("/") || href.startsWith("#") || href.startsWith("./")) {
-        a.setAttribute("target", "_self");
-      }
-    });
-
-
-    // Fix About and Skills heights and labels
-    document.querySelectorAll(".framer-1dctc6x, .framer-1v2oj63").forEach(function(el) {
-      el.style.height = "auto";
-      el.style.minHeight = "auto";
-    });
-    document.querySelectorAll(".framer-1pspeot, .framer-4bcbge, .framer-1stkhgm").forEach(function(el) {
-      el.style.height = "auto";
-      el.style.minHeight = "auto";
-    });
-    document.querySelectorAll(".framer-nkq68n, .framer-1ug0hqj").forEach(function(el) {
-      el.style.width = "fit-content";
-      var p = el.querySelector("p");
-      if (p) {
-        p.style.width = "fit-content";
-        p.style.display = "inline-flex";
-      }
-    });
-
-    // Remove empty paragraphs
-    document.querySelectorAll("p").forEach(function(p) {
-      if (p.innerHTML.trim() === '<br class="framer-text trailing-break">' || p.innerHTML.trim() === '<br>') {
-        p.remove();
-      }
-    });
   }
 
-  // Run on initial ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", applyExecutiveRefactoring);
   } else {
     applyExecutiveRefactoring();
   }
   window.addEventListener("load", applyExecutiveRefactoring);
+  window.addEventListener("visibilitychange", applyExecutiveRefactoring);
+  window.addEventListener("focus", applyExecutiveRefactoring);
 
-  // Re-run after React hydration completes (Framer hydration happens asynchronously)
-  setTimeout(applyExecutiveRefactoring, 100);
-  setTimeout(applyExecutiveRefactoring, 300);
-  setTimeout(applyExecutiveRefactoring, 700);
-  setTimeout(applyExecutiveRefactoring, 1500);
+  setTimeout(applyExecutiveRefactoring, 50);
+  setTimeout(applyExecutiveRefactoring, 150);
+  setTimeout(applyExecutiveRefactoring, 400);
+  setTimeout(applyExecutiveRefactoring, 1000);
+  setTimeout(applyExecutiveRefactoring, 2000);
 
-  // MutationObserver to enforce changes if React re-renders nodes
   try {
-    var observer = new MutationObserver(function(mutations) {
-      // Debounce or selectively run
-      applyExecutiveRefactoring();
-    });
+    var observer = new MutationObserver(applyExecutiveRefactoring);
     var target = document.getElementById("main") || document.body;
     if (target) {
       observer.observe(target, { childList: true, subtree: true });
