@@ -132,34 +132,24 @@ document.addEventListener('DOMContentLoaded', () => {
     'brand-campaign': {
       title: 'Brand Campaign & Ad Creatives',
       category: 'Marketing Creatives',
-      img: 'assets/slides/brand_campaign_mba.png',
+      img: 'assets/slides/brand-campaign_slide_1.png',
       slides: [
-        'assets/slides/brand_campaign_mba.png',
-        'canva_covers/brand-campaign_cover.png'
+        'assets/slides/brand-campaign_slide_1.png',
+        'assets/slides/brand-campaign_slide_2.png',
+        'assets/slides/brand-campaign_slide_3.png'
       ],
       desc: 'High-conversion performance ad creative suite developed for cross-platform marketing (Meta, LinkedIn, Google Display). Optimized for scroll-stopping visual hooks and immediate value proposition.',
       actionText: 'Open Interactive Canva Deck',
       link: 'https://canva.link/6tu80vzaccr2vap'
     },
-    'product-social': {
-      title: 'Product Promotion & Social Suite',
-      category: 'Marketing Creatives',
-      img: 'assets/slides/product_social_apex.png',
-      slides: [
-        'assets/slides/product_social_apex.png',
-        'canva_covers/product-social_cover.png'
-      ],
-      desc: 'Cohesive Instagram and marketing creative suite designed for Apex Institute admissions, course reveals, and educational authority branding.',
-      actionText: 'Open Interactive Canva Deck',
-      link: 'https://canva.link/kpqxa14tcb5fj3n'
-    },
     'event-collateral': {
       title: 'Event & Summit Visual Collateral',
       category: 'Marketing Creatives',
-      img: 'assets/slides/event_collateral_mba2.png',
+      img: 'assets/slides/event-collateral_slide_1.png',
       slides: [
-        'assets/slides/event_collateral_mba2.png',
-        'canva_covers/event-collateral_cover.png'
+        'assets/slides/event-collateral_slide_1.png',
+        'assets/slides/event-collateral_slide_2.png',
+        'assets/slides/event-collateral_slide_3.png'
       ],
       desc: 'Full-spectrum visual branding suite for college entrepreneurship summits and hackathons including keynotes, badges, and digital promotional banners.',
       actionText: 'Open Interactive Canva Deck',
@@ -171,7 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/slides/resume-design_slide_1.png',
       slides: [
         'assets/slides/resume-design_slide_1.png',
-        'canva_covers/resume-design_cover.png'
+        'assets/slides/resume-design_slide_2.png',
+        'assets/slides/resume-design_slide_3.png'
       ],
       desc: 'Clean, minimalist executive CV design focused on scanning speed, clean career timelines, ATS compliance, and high typographic legibility.',
       actionText: 'Open Interactive Canva Deck',
@@ -287,6 +278,31 @@ document.addEventListener('DOMContentLoaded', () => {
     ticking = false;
   };
 
+  // Tejx Designs Inertial Smooth Scrolling via Lenis
+  let lenis = null;
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.05,
+      touchMultiplier: 1.5,
+      smoothTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', () => {
+      handleScroll();
+    });
+  }
+
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(handleScroll);
@@ -295,6 +311,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   handleScroll();
+
+  // Smooth Scroll Anchor Links with Header Offset
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#' && targetId.length > 1) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          if (lenis) {
+            lenis.scrollTo(targetElement, { offset: -70 });
+          } else {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    });
+  });
 
   // 4. Portfolio Filter Architecture (Featured vs Full Archive)
   const filterPills = document.querySelectorAll('.filter-pill');
@@ -341,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (archiveBtnText) {
           archiveBtnText.textContent = isArchiveExpanded 
             ? 'Show Curated Highlights ↑' 
-            : 'View Full Archive / All 14 Projects →';
+            : 'View Full Archive / All 13 Projects →';
         }
       } else {
         archiveToggleContainer.style.display = 'none';
@@ -598,10 +632,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTopBtn = document.getElementById('backToTop');
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      if (lenis) {
+        lenis.scrollTo(0);
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
     });
   }
 

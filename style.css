@@ -67,6 +67,27 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Lenis Inertia & Smooth Scroll Support (Tejx Designs Agency Style) */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-primary);
@@ -410,6 +431,14 @@ img {
   border-radius: var(--radius-pill);
   transition: all var(--transition-quick);
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+}
+
+.nav-cta-btn .cta-text-full {
+  display: inline;
+}
+
+.nav-cta-btn .cta-text-mobile {
+  display: none;
 }
 
 .nav-cta-btn:hover {
@@ -2055,9 +2084,43 @@ img {
 }
 
 @media (max-width: 768px) {
-  .nav-links-center,
-  .nav-right-actions {
+  .floating-nav-pill {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .nav-links-center {
     display: none;
+  }
+  
+  .nav-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-social-btn.nav-linkedin-btn {
+    display: none;
+  }
+
+  .nav-social-btn.nav-instagram-btn {
+    display: flex;
+    width: 34px;
+    height: 34px;
+  }
+
+  .nav-cta-btn {
+    padding: 6px 11px;
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .nav-cta-btn .cta-text-full {
+    display: none;
+  }
+
+  .nav-cta-btn .cta-text-mobile {
+    display: inline;
   }
   
   .mobile-toggle-btn {
