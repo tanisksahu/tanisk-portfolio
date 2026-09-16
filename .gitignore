@@ -1,0 +1,11 @@
+*.py
+*.log
+boat_*.png
+boat_*.jpg
+boat_screen.*
+canva_present_slide.png
+emag_*.png
+downloaded_slides/
+test_*.png
+test_*.webp
+*.tmp
