@@ -3,44 +3,39 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Complete Project Database for Modal Previews (All 14 Projects)
+  // Complete Project Database for Modal Previews (12 Selected Projects)
   const projectsData = {
     'studynex': {
-      title: 'StudyNex – Academic Operating System',
-      category: 'Web & Apps',
+      title: 'StudyNex — Academic Operating System',
+      category: 'Web & UI Design',
+      client: 'StudyNex EdTech',
+      tools: ['React', 'UI/UX', 'Figma', 'Web Design'],
       img: 'https://framerusercontent.com/images/jtItG1XLjWOLw9b5qRfB2pBdBmY.png?width=1912&height=948',
       slides: [
         'https://framerusercontent.com/images/jtItG1XLjWOLw9b5qRfB2pBdBmY.png?width=1912&height=948'
       ],
-      desc: 'StudyNex is a comprehensive educational operating system designed to unify study material organization, lecture schedules, flashcards, and student performance metrics into one modern workspace with intuitive responsive UX.',
+      desc: 'StudyNex is an academic productivity and management operating system engineered to unify course schedule tracking, lecture notes, flashcards, and student performance metrics into one modern workspace with intuitive responsive UX.',
       actionText: 'Visit Live Web Application',
       link: 'https://studynex-app.web.app/'
     },
     'ecommerce-clothing': {
-      title: 'AI-Assisted E-Commerce — Clothing Brand',
-      category: 'Web & Apps',
+      title: 'Aether Archive — Luxury Streetwear E-Commerce',
+      category: 'Web & UI Design',
+      client: 'Aether Archive',
+      tools: ['UI/UX', 'Product Design', 'Responsive Web'],
       img: 'assets/ecommerce_clothing.jpg',
       slides: [
         'assets/ecommerce_clothing.jpg'
       ],
-      desc: 'High-end dark-mode luxury streetwear apparel store with intelligent size filtering, catalog layout, and editorial visuals engineered for high checkout conversions.',
+      desc: 'High-end dark-mode luxury streetwear apparel store with intelligent size filtering, structured catalog layout, and editorial product visuals engineered for smooth navigation and high checkout conversion.',
       actionText: 'View Interactive Showcase',
       link: 'https://tanisk-design.vercel.app/'
     },
-    'portfolio-design': {
-      title: 'Portfolio Design – Tanisk Sahu',
-      category: 'Web & Apps',
-      img: 'assets/portfolio_tanisk.jpg',
-      slides: [
-        'assets/portfolio_tanisk.jpg'
-      ],
-      desc: 'Live responsive portfolio presentation showcasing graphic systems, corporate deliverables, and digital experiences with clean grid structure and interactive previews.',
-      actionText: 'Visit Live Portfolio',
-      link: 'https://tanisk-design.vercel.app/'
-    },
     'apple-vision': {
-      title: 'Apple Vision Pro Presentation',
-      category: 'Pitch Decks & PPTs',
+      title: 'Apple Vision Pro — Spatial Computing Keynote',
+      category: 'Pitch Decks & Presentations',
+      client: 'Spatial Computing Keynote',
+      tools: ['Canva Pro', 'Presentation Architecture', 'Visual Design'],
       img: 'assets/slides/apple-vision_slide_1.png',
       slides: [
         'assets/slides/apple-vision_slide_1.png',
@@ -52,8 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
       link: 'https://canva.link/firjvu21bf5hzyk'
     },
     'product-pitch': {
-      title: 'Product Pitch & Launch Deck',
-      category: 'Pitch Decks & PPTs',
+      title: 'boAt Astra — AI Earbuds Product Launch Deck',
+      category: 'Pitch Decks & Presentations',
+      client: 'boAt Lifestyle / Astra AI',
+      tools: ['Canva Pro', 'Pitch Deck Design', 'Data Visualization'],
       img: 'assets/slides/product-pitch_slide_1.png',
       slides: [
         'assets/slides/product-pitch_slide_1.png',
@@ -65,8 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
       link: 'https://canva.link/pwbwtf0tsqt650j'
     },
     'leadership-workshop': {
-      title: 'Leadership Workshop Presentation',
-      category: 'Pitch Decks & PPTs',
+      title: 'Kadam SOS Foundation — Leadership Summit Deck',
+      category: 'Pitch Decks & Presentations',
+      client: 'Kadam SOS Foundation',
+      tools: ['Canva Pro', 'Presentation Design', 'Typographic Hierarchy'],
       img: 'assets/slides/leadership-workshop_slide_1.png',
       slides: [
         'assets/slides/leadership-workshop_slide_1.png',
@@ -78,8 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
       link: 'https://canva.link/9mtynmjhk6yqhf3'
     },
     'csr-proposal': {
-      title: 'CSR Proposal & Impact Framework',
-      category: 'Proposals & Reports',
+      title: 'Kadam Foundation — CSR Project Siksha Proposal',
+      category: 'Reports, Proposals & Documents',
+      client: 'Kadam Foundation',
+      tools: ['Document Design', 'Editorial Hierarchy', 'Grant Proposal'],
       img: 'assets/slides/csr-proposal_slide_1.png',
       slides: [
         'assets/slides/csr-proposal_slide_1.png',
@@ -91,8 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
       link: 'https://canva.link/bkyiaq769piu87v'
     },
     'ngo-impact': {
-      title: 'NGO — Impact Annual Brochure',
-      category: 'Proposals & Reports',
+      title: 'Kadam Foundation — Annual Impact Report & Brochure',
+      category: 'Reports, Proposals & Documents',
+      client: 'Kadam Foundation',
+      tools: ['Editorial Design', 'Infographics', 'Print & Digital'],
       img: 'assets/slides/ngo-impact_slide_1.png',
       slides: [
         'assets/slides/ngo-impact_slide_1.png',
@@ -103,9 +106,26 @@ document.addEventListener('DOMContentLoaded', () => {
       actionText: 'Open Interactive Canva Deck',
       link: 'https://canva.link/ozmdaru18fpooaa'
     },
+    'resume-design': {
+      title: 'Executive Document Design — Professional Resume',
+      category: 'Reports, Proposals & Documents',
+      client: 'Professional Document Design',
+      tools: ['Document Hierarchy', 'ATS Optimization', 'Typography'],
+      img: 'assets/slides/resume-design_slide_1.png',
+      slides: [
+        'assets/slides/resume-design_slide_1.png',
+        'assets/slides/resume-design_slide_2.png',
+        'assets/slides/resume-design_slide_3.png'
+      ],
+      desc: 'Clean, minimalist executive CV design focused on scanning speed, clear career timelines, ATS compliance, and high typographic legibility.',
+      actionText: 'Open Interactive Canva Deck',
+      link: 'https://canva.link/4wpwigagrvqbmyf'
+    },
     'e-magazine': {
-      title: 'Editorial E‑Magazine Layout',
+      title: 'UrbanSetu Foundation — Editorial E-Magazine',
       category: 'Brochures & Editorial',
+      client: 'UrbanSetu Foundation',
+      tools: ['Editorial Layout', 'Grid Systems', 'Typography'],
       img: 'assets/slides/e-magazine_slide_1.png',
       slides: [
         'assets/slides/e-magazine_slide_1.png',
@@ -117,8 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
       link: 'https://canva.link/xuwmld2uq96fzwu'
     },
     'trifold-brochure': {
-      title: 'Corporate Trifold Print Collateral',
+      title: 'UrbanSetu Foundation — Corporate Trifold Brochure',
       category: 'Brochures & Editorial',
+      client: 'UrbanSetu Foundation',
+      tools: ['Print Design', 'Bleed & Fold Geometry', 'Corporate Layout'],
       img: 'assets/slides/trifold-brochure_slide_1.png',
       slides: [
         'assets/slides/trifold-brochure_slide_1.png',
@@ -130,8 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
       link: 'https://canva.link/4kp1fxknty76u99'
     },
     'brand-campaign': {
-      title: 'Brand Campaign & Ad Creatives',
-      category: 'Marketing Creatives',
+      title: 'Apex Institute — MBA Admission Campaign',
+      category: 'Marketing & Social Media Creatives',
+      client: 'Apex Institute of Management',
+      tools: ['Ad Creatives', 'Social Media', 'Performance Marketing'],
       img: 'assets/slides/brand-campaign_slide_1.png',
       slides: [
         'assets/slides/brand-campaign_slide_1.png',
@@ -143,30 +167,19 @@ document.addEventListener('DOMContentLoaded', () => {
       link: 'https://canva.link/6tu80vzaccr2vap'
     },
     'event-collateral': {
-      title: 'Event & Summit Visual Collateral',
-      category: 'Marketing Creatives',
+      title: 'Chandigarh University & AIM — AI for Business Campaign',
+      category: 'Marketing & Social Media Creatives',
+      client: 'Chandigarh University / AIM',
+      tools: ['Event Visual Collateral', 'Banner Kits', 'Brand Campaigns'],
       img: 'assets/slides/event-collateral_slide_1.png',
       slides: [
         'assets/slides/event-collateral_slide_1.png',
         'assets/slides/event-collateral_slide_2.png',
         'assets/slides/event-collateral_slide_3.png'
       ],
-      desc: 'Full-spectrum visual branding suite for college entrepreneurship summits and hackathons including keynotes, badges, and digital promotional banners.',
+      desc: 'Full-spectrum visual branding suite for university entrepreneurship initiatives and academic program promotions including keynotes, social banners, and digital marketing materials.',
       actionText: 'Open Interactive Canva Deck',
       link: 'https://canva.link/5cl3o0dc7moqa5k'
-    },
-    'resume-design': {
-      title: 'Professional Executive Resume',
-      category: 'Proposals & Reports',
-      img: 'assets/slides/resume-design_slide_1.png',
-      slides: [
-        'assets/slides/resume-design_slide_1.png',
-        'assets/slides/resume-design_slide_2.png',
-        'assets/slides/resume-design_slide_3.png'
-      ],
-      desc: 'Clean, minimalist executive CV design focused on scanning speed, clean career timelines, ATS compliance, and high typographic legibility.',
-      actionText: 'Open Interactive Canva Deck',
-      link: 'https://canva.link/4wpwigagrvqbmyf'
     }
   };
 
@@ -375,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (archiveBtnText) {
           archiveBtnText.textContent = isArchiveExpanded 
             ? 'Show Curated Highlights ↑' 
-            : 'View Full Archive / All 13 Projects →';
+            : 'View Selected Work — 12 Projects';
         }
       } else {
         archiveToggleContainer.style.display = 'none';
@@ -421,6 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalNextSlide = document.getElementById('modalNextSlide');
   const modalSlideCounter = document.getElementById('modalSlideCounter');
   const modalThumbnails = document.getElementById('modalThumbnails');
+  const modalMetaRow = document.getElementById('modalMetaRow');
 
   let currentProjectSlides = [];
   let currentSlideIdx = 0;
@@ -457,9 +471,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = projectsData[projectId];
     if (!data) return;
 
-    modalTitle.textContent = data.title;
-    modalCategory.textContent = data.category;
-    modalDesc.textContent = data.desc;
+    if (modalTitle) modalTitle.textContent = data.title || 'Selected Design Project';
+    if (modalCategory) modalCategory.textContent = data.category || 'Portfolio Work';
+    if (modalDesc) modalDesc.textContent = data.desc || 'Comprehensive visual design and layout system crafted with clean hierarchy and typography.';
+
+    // Dynamic metadata row (Client/Context & Tools)
+    if (modalMetaRow) {
+      modalMetaRow.innerHTML = '';
+      if (data.client) {
+        const clientBadge = document.createElement('span');
+        clientBadge.className = 'modal-meta-chip client-chip';
+        clientBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span>${data.client}</span>`;
+        modalMetaRow.appendChild(clientBadge);
+      }
+      if (data.tools && Array.isArray(data.tools)) {
+        data.tools.forEach(tool => {
+          const toolBadge = document.createElement('span');
+          toolBadge.className = 'modal-meta-chip tool-chip';
+          toolBadge.textContent = tool;
+          modalMetaRow.appendChild(toolBadge);
+        });
+      }
+    }
 
     // Action links
     if (modalActionBtn) {
