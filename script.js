@@ -91,35 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
       actionText: 'Open Interactive Canva Deck',
       link: 'https://canva.link/bkyiaq769piu87v'
     },
-    'ngo-impact': {
-      title: 'Kadam Foundation — Annual Impact Report & Brochure',
+    'sajal-garg-report': {
+      title: 'Report Preparation — Social Internship Report (Sajal Garg)',
       category: 'Reports, Proposals & Documents',
-      client: 'Kadam Foundation',
-      tools: ['Editorial Design', 'Infographics', 'Print & Digital'],
-      img: 'assets/slides/ngo-impact_slide_1.png',
+      client: 'Sajal Garg / Social Internship',
+      tools: ['Document Layout', 'Fieldwork Analysis', 'SDG Framework', 'Data Reporting'],
+      img: 'assets/slides/sajal-garg-report_slide_1.png',
       slides: [
-        'assets/slides/ngo-impact_slide_1.png',
-        'assets/slides/ngo-impact_slide_2.png',
-        'assets/slides/ngo-impact_slide_3.png'
+        'assets/slides/sajal-garg-report_slide_1.png',
+        'assets/slides/sajal-garg-report_slide_2.png',
+        'assets/slides/sajal-garg-report_slide_3.png'
       ],
-      desc: 'Annual donor brochure and field report designed for humanitarian non-profit operations. Focuses on authentic storytelling, data infographics, transparent fund allocation, and emotional connection.',
-      actionText: 'Open Interactive Canva Deck',
-      link: 'https://canva.link/ozmdaru18fpooaa'
-    },
-    'resume-design': {
-      title: 'Executive Document Design — Professional Resume',
-      category: 'Reports, Proposals & Documents',
-      client: 'Professional Document Design',
-      tools: ['Document Hierarchy', 'ATS Optimization', 'Typography'],
-      img: 'assets/slides/resume-design_slide_1.png',
-      slides: [
-        'assets/slides/resume-design_slide_1.png',
-        'assets/slides/resume-design_slide_2.png',
-        'assets/slides/resume-design_slide_3.png'
-      ],
-      desc: 'Clean, minimalist executive CV design focused on scanning speed, clear career timelines, ATS compliance, and high typographic legibility.',
-      actionText: 'Open Interactive Canva Deck',
-      link: 'https://canva.link/4wpwigagrvqbmyf'
+      desc: 'Comprehensive 60-hour social internship documentation report covering community outreach, data analysis, SDG alignment, and fieldwork execution.',
+      actionText: 'View Report Document',
+      link: 'https://docs.google.com/document/d/1ms5XiPvr-qHl8J7OYvPsTl4TgrThwk5R/edit?usp=sharing&ouid=109325373885900277014&rtpof=true&sd=true'
     },
     'e-magazine': {
       title: 'UrbanSetu Foundation — Editorial E-Magazine',
@@ -165,21 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'High-conversion performance ad creative suite developed for cross-platform marketing (Meta, LinkedIn, Google Display). Optimized for scroll-stopping visual hooks and immediate value proposition.',
       actionText: 'Open Interactive Canva Deck',
       link: 'https://canva.link/6tu80vzaccr2vap'
-    },
-    'event-collateral': {
-      title: 'Chandigarh University & AIM — AI for Business Campaign',
-      category: 'Marketing & Social Media Creatives',
-      client: 'Chandigarh University / AIM',
-      tools: ['Event Visual Collateral', 'Banner Kits', 'Brand Campaigns'],
-      img: 'assets/slides/event-collateral_slide_1.png',
-      slides: [
-        'assets/slides/event-collateral_slide_1.png',
-        'assets/slides/event-collateral_slide_2.png',
-        'assets/slides/event-collateral_slide_3.png'
-      ],
-      desc: 'Full-spectrum visual branding suite for university entrepreneurship initiatives and academic program promotions including keynotes, social banners, and digital marketing materials.',
-      actionText: 'Open Interactive Canva Deck',
-      link: 'https://canva.link/5cl3o0dc7moqa5k'
     }
   };
 
@@ -359,40 +329,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     projectCards.forEach(card => {
       const cardCategory = card.getAttribute('data-category');
-      const isFeatured = card.getAttribute('data-featured') === 'true';
-
       const matchesCategory = (activeCategory === 'all' || cardCategory === activeCategory);
 
       if (matchesCategory) {
         totalMatchingCategory++;
-
-        if (activeCategory === 'all') {
-          if (isArchiveExpanded || isFeatured) {
-            card.classList.remove('hidden');
-            visibleCount++;
-          } else {
-            card.classList.add('hidden');
-          }
-        } else {
-          card.classList.remove('hidden');
-          visibleCount++;
-        }
+        card.classList.remove('hidden');
+        card.style.display = '';
+        card.classList.add('is-revealed');
+        visibleCount++;
       } else {
         card.classList.add('hidden');
+        card.style.display = 'none';
       }
     });
 
     if (archiveToggleContainer) {
-      if (activeCategory === 'all') {
-        archiveToggleContainer.style.display = 'block';
-        if (archiveBtnText) {
-          archiveBtnText.textContent = isArchiveExpanded 
-            ? 'Show Curated Highlights ↑' 
-            : 'View Selected Work — 12 Projects';
-        }
-      } else {
-        archiveToggleContainer.style.display = 'none';
-      }
+      archiveToggleContainer.style.display = 'none';
     }
   };
 
@@ -450,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 120);
 
     if (modalSlideCounter) {
-      modalSlideCounter.textContent = `Slide ${currentSlideIdx + 1} of ${currentProjectSlides.length}`;
+      modalSlideCounter.textContent = `${currentSlideIdx + 1} / ${currentProjectSlides.length}`;
     }
 
     // Highlight active thumbnail
@@ -542,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalImg.alt = data.title;
     modalImg.style.opacity = '1';
     if (modalSlideCounter) {
-      modalSlideCounter.textContent = `Slide 1 of ${currentProjectSlides.length}`;
+      modalSlideCounter.textContent = `1 / ${currentProjectSlides.length}`;
     }
 
     modal.classList.add('active');
