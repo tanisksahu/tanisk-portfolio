@@ -2509,35 +2509,49 @@ img {
 }
 
 @media (max-width: 768px) {
+  :root {
+    font-size: 13.5px; /* Scales rem-based typography down by ~18-20% */
+  }
+
+  /* Compact Navbar */
+  .floating-header-wrapper {
+    top: 12px;
+    width: min(94%, 560px);
+  }
+
   .floating-nav-pill {
     padding: 6px 10px;
     gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .nav-brand {
+    margin-right: auto;
+    flex-shrink: 0;
   }
 
   .nav-links-center {
-    display: none;
+    display: none !important;
   }
   
   .nav-right-actions {
     display: flex;
     align-items: center;
     gap: 6px;
+    margin-left: auto;
+    flex-shrink: 0;
   }
 
-  .nav-social-btn.nav-linkedin-btn {
-    display: none;
-  }
-
+  .nav-social-btn.nav-linkedin-btn,
   .nav-social-btn.nav-instagram-btn {
-    display: flex;
-    width: 34px;
-    height: 34px;
+    display: none; /* Keep top bar clean; Instagram is in mobile drawer and footer */
   }
 
   .nav-cta-btn {
-    padding: 6px 11px;
+    padding: 6px 12px;
     font-size: 12px;
     gap: 4px;
+    flex-shrink: 0;
   }
 
   .nav-cta-btn .cta-text-full {
@@ -2550,102 +2564,80 @@ img {
   
   .mobile-toggle-btn {
     display: flex;
+    flex-shrink: 0;
+    margin-left: 2px;
   }
 
-  .projects-grid {
+  /* Compact Container & Sections */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section-wrapper {
+    padding: 48px 0;
+  }
+
+  .section-tag-pill {
+    font-size: 10px;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    font-size: clamp(1.5rem, 5vw, 1.85rem) !important;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .section-description {
+    font-size: 13px !important;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+
+  /* Compact Hero Section */
+  .hero-split-section {
+    padding-top: 96px;
+    padding-bottom: 48px;
+  }
+
+  .hero-split-container {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 28px;
   }
 
-  .bento-services-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .hero-badge {
+    padding: 5px 12px;
+    font-size: 11.5px;
+    margin-bottom: 14px;
   }
 
-  .hero-metrics-strip {
-    flex-direction: column;
-    gap: 20px;
-    padding: 24px;
-  }
-
-  .metric-divider {
-    width: 60%;
-    height: 1px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 24px;
-  }
-
-  .footer-left {
-    flex-direction: column;
-  }
-
-  .mega-cta-card {
-    padding: 50px 20px;
-  }
-
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .modal-content-box {
-    padding: 20px 20px 24px;
-  }
-
-  .project-modal-backdrop {
-    padding: 12px;
-  }
-
-  .modal-dialog-panel {
-    max-height: 94vh;
-    border-radius: 18px;
-  }
-
-  .modal-media-box {
-    height: 280px;
-  }
-
-  .modal-top-bar {
-    padding: 12px 16px;
-  }
-
-  .modal-top-cta-btn {
-    display: none;
-  }
-
-  .modal-title {
-    font-size: 20px;
-  }
-
-  .gallery-nav-btn {
-    width: 36px;
-    height: 36px;
-  }
-
-  .gallery-nav-btn.prev-btn { left: 10px; }
-  .gallery-nav-btn.next-btn { right: 10px; }
-
-  .modal-thumbnails-strip {
-    padding: 10px 16px;
-    gap: 8px;
-  }
-
-  .modal-thumb-btn {
-    width: 64px;
-    height: 42px;
-  }
-}
-
-@media (max-width: 480px) {
+  .hero-title,
   .hero-split-title {
-    font-size: 2.1rem;
+    font-size: clamp(1.75rem, 6.5vw, 2.2rem) !important;
+    line-height: 1.2 !important;
+    margin: 12px 0 12px 0 !important;
+  }
+
+  .hero-subtitle {
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 20px !important;
+    font-size: 13px !important;
   }
 
   .floating-reviews-stage {
-    height: 360px;
+    height: 320px;
   }
 
   .floating-review-card {
@@ -2653,44 +2645,258 @@ img {
     padding: 14px;
   }
 
+  /* Compact Projects Grid */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .card-media-wrapper {
-    height: 250px;
-  }
-
-  .modal-media-box {
-    height: 220px;
-  }
-
-  .center-hover-pill {
-    padding: 10px 18px;
-    font-size: 12.5px;
+    height: 260px;
   }
 
   .card-project-title {
-    font-size: 15px;
+    font-size: 16px;
+  }
+
+  .card-client-tag {
+    font-size: 12px;
+  }
+
+  /* Compact Services & Stacking */
+  .bento-services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hero-metrics-strip {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .metric-divider {
+    width: 60%;
+    height: 1px;
+  }
+
+  .stack-brand-card {
+    padding: 20px;
+  }
+
+  /* Compact About Bento Grid */
+  .about-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .about-bento-card {
+    padding: 22px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .about-hero-title {
+    font-size: 1.45rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  .about-narrative-text p {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .stat-number {
+    font-size: 2.2rem !important;
+  }
+
+  .stat-label {
+    font-size: 12px !important;
+  }
+
+  .pillar-item {
+    padding: 12px 10px !important;
+  }
+
+  .pillar-title {
+    font-size: 13px !important;
+  }
+
+  .pillar-desc {
+    font-size: 12px !important;
+  }
+
+  .arsenal-pill {
+    padding: 8px 12px !important;
+  }
+
+  .pill-name {
+    font-size: 12px !important;
+  }
+
+  /* Compact Testimonial Cards */
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .testimonial-card {
+    padding: 20px 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .testimonial-quote {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Compact Bottom Mega CTA Card */
+  .mega-cta-card {
+    padding: 44px 20px !important;
+    border-radius: 20px !important;
+  }
+
+  .mega-cta-title {
+    font-size: 1.85rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .mega-cta-subtitle {
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 24px !important;
+  }
+
+  .primary-cta-btn {
+    padding: 12px 26px !important;
+    font-size: 14px !important;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-left {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Modal Mobile Compact */
+  .project-modal-backdrop {
+    padding: 10px;
+  }
+
+  .modal-dialog-panel {
+    max-height: 94vh;
+    border-radius: 16px;
+  }
+
+  .modal-media-box {
+    height: 240px;
+  }
+
+  .modal-top-bar {
+    padding: 10px 14px;
+  }
+
+  .modal-top-cta-btn {
+    display: none;
+  }
+
+  .modal-title {
+    font-size: 18px;
+  }
+
+  .gallery-nav-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .gallery-nav-btn.prev-btn { left: 8px; }
+  .gallery-nav-btn.next-btn { right: 8px; }
+
+  .modal-thumbnails-strip {
+    padding: 8px 14px;
+    gap: 6px;
+  }
+
+  .modal-thumb-btn {
+    width: 58px;
+    height: 38px;
+  }
+
+  .modal-content-box {
+    padding: 16px 16px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 12.5px;
+  }
+
+  .floating-header-wrapper {
+    top: 8px;
+    width: calc(100% - 16px);
+  }
+
+  .floating-nav-pill {
+    padding: 5px 8px;
+    gap: 6px;
+  }
+
+  .nav-brand .brand-role {
+    display: none;
+  }
+
+  .nav-brand .brand-name {
+    font-size: 12.5px;
+  }
+
+  .avatar-ring {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav-cta-btn {
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+
+  .mobile-toggle-btn {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+  }
+
+  .hero-split-title {
+    font-size: 1.65rem !important;
+  }
+
+  .card-media-wrapper {
+    height: 210px;
+  }
+
+  .modal-media-box {
+    height: 190px;
+  }
+
+  .center-hover-pill {
+    padding: 8px 14px;
+    font-size: 11.5px;
+  }
+
+  .card-project-title {
+    font-size: 14.5px;
   }
 
   .card-arrow-circle-btn {
-    width: 36px;
-    height: 36px;
-  }
-
-  .modal-meta-row {
-    gap: 6px;
-    margin-bottom: 10px;
-  }
-
-  .modal-meta-chip {
-    font-size: 11px;
-    padding: 3px 8px;
-  }
-
-  .card-pills-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    top: 10px;
-    left: 10px;
+    width: 32px;
+    height: 32px;
   }
 }
 
