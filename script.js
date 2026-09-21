@@ -222,24 +222,139 @@ document.addEventListener('DOMContentLoaded', () => {
   const stackBrandCards = document.querySelectorAll('.brands-stack-col .stack-brand-card');
   const matrixCards = document.querySelectorAll('.comparison-matrix-stack .matrix-card');
 
-  let ticking = false;
-
   const updateStickyStacking = () => {
-    [stackBrandCards, matrixCards].forEach(cards => {
-      cards.forEach((card, idx) => {
-        if (idx < cards.length - 1) {
-          const nextCard = cards[idx + 1];
-          const nextRect = nextCard.getBoundingClientRect();
-          const curRect = card.getBoundingClientRect();
-          // Trigger scale-down effect when the next sticky card approaches top threshold
-          if (nextRect.top <= curRect.top + 75) {
-            card.classList.add('is-stacked');
-          } else {
-            card.classList.remove('is-stacked');
-          }
+    // Process Brand Cards Stacking Physics
+    const brandCards = Array.from(document.querySelectorAll('.brands-stack-col .stack-brand-card'));
+    brandCards.forEach((card, idx) => {
+      let level = 0;
+      const curRect = card.getBoundingClientRect();
+      for (let nextIdx = idx + 1; nextIdx < brandCards.length; nextIdx++) {
+        const nextRect = brandCards[nextIdx].getBoundingClientRect();
+        if (nextRect.top <= curRect.top + 90) {
+          level++;
         }
-      });
+      }
+
+      if (level >= 2) {
+        card.classList.remove('is-stacked');
+        card.classList.add('is-stacked-deep');
+      } else if (level === 1) {
+        card.classList.remove('is-stacked-deep');
+        card.classList.add('is-stacked');
+      } else {
+        card.classList.remove('is-stacked', 'is-stacked-deep');
+      }
     });
+
+    // Process Why-Me Comparison Matrix Stacking Physics
+    const matrixCards = Array.from(document.querySelectorAll('.comparison-matrix-stack .matrix-card'));
+    matrixCards.forEach((card, idx) => {
+      let level = 0;
+      const curRect = card.getBoundingClientRect();
+      for (let nextIdx = idx + 1; nextIdx < matrixCards.length; nextIdx++) {
+        const nextRect = matrixCards[nextIdx].getBoundingClientRect();
+        if (nextRect.top <= curRect.top + 90) {
+          level++;
+        }
+      }
+
+      if (level >= 2) {
+        card.classList.remove('is-stacked');
+        card.classList.add('is-stacked-deep');
+      } else if (level === 1) {
+        card.classList.remove('is-stacked-deep');
+        card.classList.add('is-stacked');
+      } else {
+        card.classList.remove('is-stacked', 'is-stacked-deep');
+      }
+    });
+  };
+
+  // 3c. Dynamic Card Floating Physics (Unified Grid Alignment — Zero Scatter, Zero Tilt)
+  const updateCardFloatPhysics = () => {
+    const vh = window.innerHeight;
+    const now = performance.now();
+
+    // 1. Client Endorsement Section (#testimonials)
+    const testSection = document.getElementById('testimonials');
+    if (testSection) {
+      const rect = testSection.getBoundingClientRect();
+      if (rect.top < vh + 150 && rect.bottom > -150) {
+        const sectionMid = rect.top + rect.height / 2;
+        const distFromMid = sectionMid - (vh / 2);
+
+        // Unified gentle vertical float for all 3 cards in the row (preserves level alignment)
+        const testFloat = Math.sin(now * 0.0018) * 5 + (distFromMid * 0.025);
+        const clampedOffset = Math.max(-14, Math.min(14, testFloat));
+
+        const cards = testSection.querySelectorAll('.testimonial-card');
+        cards.forEach((card) => {
+          card.style.setProperty('--float-y', `${clampedOffset.toFixed(1)}px`);
+        });
+      }
+    }
+
+    // 2. About Section Bento Cards (#about)
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const rect = aboutSection.getBoundingClientRect();
+      if (rect.top < vh + 150 && rect.bottom > -150) {
+        const sectionMid = rect.top + rect.height / 2;
+        const distFromMid = sectionMid - (vh / 2);
+
+        // Unified gentle vertical float for all 4 bento cards (preserves 100% clean grid alignment)
+        const aboutFloat = Math.sin(now * 0.0016) * 5 + (distFromMid * 0.025);
+        const clampedOffset = Math.max(-14, Math.min(14, aboutFloat));
+
+        const bentoCards = aboutSection.querySelectorAll('.about-bento-card');
+        bentoCards.forEach((card) => {
+          card.style.setProperty('--float-y', `${clampedOffset.toFixed(1)}px`);
+        });
+      }
+    }
+  };
+
+  // Continuous RAF loop for smooth 60fps card floating physics
+  let cardFloatRafId = null;
+  function runCardFloatLoop() {
+    updateCardFloatPhysics();
+    cardFloatRafId = requestAnimationFrame(runCardFloatLoop);
+  }
+  runCardFloatLoop();
+
+  // 3d. Smooth Bottom End-of-Page Pop-Up for Mega CTA Card (#contact)
+  const updateEndPopup = () => {
+    const ctaCard = document.querySelector('.mega-cta-card');
+    if (!ctaCard) return;
+
+    const scrollBottom = window.scrollY + window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+    const distFromEnd = docHeight - scrollBottom;
+
+    const triggerRange = 750;
+    if (distFromEnd <= triggerRange) {
+      const progress = Math.max(0, Math.min(1, 1 - (distFromEnd / triggerRange)));
+      const eased = 1 - Math.pow(1 - progress, 2.8);
+
+      const popupY = (1 - eased) * 95;
+      const popupScale = 0.91 + (eased * 0.09);
+      const opacity = 0.3 + (eased * 0.7);
+
+      ctaCard.style.setProperty('--popup-y', `${popupY.toFixed(1)}px`);
+      ctaCard.style.setProperty('--popup-scale', `${popupScale.toFixed(3)}`);
+      ctaCard.style.setProperty('--popup-opacity', `${opacity.toFixed(2)}`);
+
+      if (progress > 0.65) {
+        ctaCard.classList.add('is-end-settled');
+      } else {
+        ctaCard.classList.remove('is-end-settled');
+      }
+    } else {
+      ctaCard.style.setProperty('--popup-y', '95px');
+      ctaCard.style.setProperty('--popup-scale', '0.91');
+      ctaCard.style.setProperty('--popup-opacity', '0.3');
+      ctaCard.classList.remove('is-end-settled');
+    }
   };
 
   const handleScroll = () => {
@@ -258,8 +373,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateStickyStacking();
+    runScrollSpy();
+    updateCardFloatPhysics();
+    updateEndPopup();
     ticking = false;
   };
+
+  // 3b. Interactive Navigation Slider Indicator & Fluid ScrollSpy
+  const navLinksContainer = document.getElementById('navLinks');
+  const navSliderIndicator = document.getElementById('navSliderIndicator');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const navSections = [
+    { id: 'work', el: document.getElementById('work'), link: document.querySelector('.nav-link[href="#work"]') },
+    { id: 'services', el: document.getElementById('services'), link: document.querySelector('.nav-link[href="#services"]') },
+    { id: 'about', el: document.getElementById('about'), link: document.querySelector('.nav-link[href="#about"]') },
+    { id: 'testimonials', el: document.getElementById('testimonials'), link: document.querySelector('.nav-link[href="#testimonials"]') },
+    { id: 'contact', el: document.getElementById('contact'), link: document.querySelector('.nav-link[href="#contact"]') }
+  ].filter(item => item.el && item.link);
+
+  let isClickScrolling = false;
+  let clickScrollTimer = null;
+
+  const updateNavSlider = (targetLink, animate = true) => {
+    if (!targetLink || !navSliderIndicator || !navLinksContainer) return;
+    
+    const leftOffset = targetLink.offsetLeft;
+    const linkWidth = targetLink.offsetWidth;
+
+    if (!animate) {
+      navSliderIndicator.style.transition = 'none';
+    } else {
+      navSliderIndicator.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease';
+    }
+
+    navSliderIndicator.style.transform = `translateX(${leftOffset}px)`;
+    navSliderIndicator.style.width = `${linkWidth}px`;
+    navSliderIndicator.style.opacity = '1';
+
+    navLinks.forEach(link => link.classList.remove('active'));
+    targetLink.classList.add('active');
+  };
+
+  function runScrollSpy() {
+    if (isClickScrolling || !navSections.length) return;
+
+    const scrollPos = window.scrollY + window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+    
+    // Bottom of page activates Contact tab
+    if (docHeight - scrollPos < 140) {
+      const contactItem = navSections.find(s => s.id === 'contact');
+      if (contactItem && !contactItem.link.classList.contains('active')) {
+        updateNavSlider(contactItem.link, true);
+        return;
+      }
+    }
+
+    const triggerPoint = window.innerHeight * 0.38;
+    let activeSection = null;
+
+    for (let i = 0; i < navSections.length; i++) {
+      const rect = navSections[i].el.getBoundingClientRect();
+      if (rect.top <= triggerPoint && rect.bottom > 60) {
+        activeSection = navSections[i];
+      }
+    }
+
+    // Default to work if near top
+    if (!activeSection && window.scrollY < 400 && navSections[0]) {
+      activeSection = navSections[0];
+    }
+
+    if (activeSection && !activeSection.link.classList.contains('active')) {
+      updateNavSlider(activeSection.link, true);
+    }
+  }
+
+  // Initial pill placement
+  const initialActiveLink = document.querySelector('.nav-link.active') || navLinks[0];
+  if (initialActiveLink) {
+    setTimeout(() => updateNavSlider(initialActiveLink, false), 80);
+    window.addEventListener('resize', () => {
+      const curActive = document.querySelector('.nav-link.active');
+      if (curActive) updateNavSlider(curActive, false);
+    });
+  }
 
   // Tejx Designs Inertial Smooth Scrolling via Lenis
   let lenis = null;
@@ -295,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   handleScroll();
 
-  // Smooth Scroll Anchor Links with Header Offset
+  // Smooth Scroll Anchor Links with Header Offset & Kinetic Tab Pill Slide
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -303,6 +502,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
           e.preventDefault();
+
+          // If it's a nav link, immediately animate tab indicator and lock ScrollSpy briefly
+          if (this.classList.contains('nav-link')) {
+            updateNavSlider(this, true);
+            isClickScrolling = true;
+            clearTimeout(clickScrollTimer);
+            clickScrollTimer = setTimeout(() => {
+              isClickScrolling = false;
+            }, 850);
+          }
+
           if (lenis) {
             lenis.scrollTo(targetElement, { offset: -70 });
           } else {
@@ -335,11 +545,15 @@ document.addEventListener('DOMContentLoaded', () => {
         totalMatchingCategory++;
         card.classList.remove('hidden');
         card.style.display = '';
-        card.classList.add('is-revealed');
+        const rect = card.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.95) {
+          card.classList.add('is-revealed');
+        }
         visibleCount++;
       } else {
         card.classList.add('hidden');
         card.style.display = 'none';
+        card.classList.remove('is-revealed');
       }
     });
 
@@ -628,22 +842,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. Reveal Elements on Scroll
-  const revealElements = document.querySelectorAll('.project-card, .bento-card, .testimonial-card, .about-portrait-card, .about-narrative-bento, .skills-marquee-section');
-  
+  // 8. Robust Scroll Reveal Engine (Dual Observer + Lenis & Scroll Listeners)
+  const revealElements = document.querySelectorAll(`
+    .section-header-centered,
+    .project-card,
+    .bento-card,
+    .testimonial-card,
+    .about-bento-card,
+    .kpi-bento-card,
+    .brand-proof-container,
+    .skills-marquee-section,
+    .mega-cta-card,
+    .cta-banner
+  `);
+
   revealElements.forEach(el => el.classList.add('reveal-on-scroll'));
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-revealed');
-        observer.unobserve(entry.target);
+  const checkAndReveal = () => {
+    const triggerBottom = window.innerHeight * 0.94;
+    revealElements.forEach(el => {
+      if (!el.classList.contains('is-revealed')) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= triggerBottom && rect.bottom >= 0) {
+          el.classList.add('is-revealed');
+        }
       }
     });
-  }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -40px 0px'
-  });
+  };
 
-  revealElements.forEach(el => observer.observe(el));
+  // Immediate check on initial page load
+  checkAndReveal();
+
+  // Global scroll & resize triggers
+  window.addEventListener('scroll', checkAndReveal, { passive: true });
+  window.addEventListener('resize', checkAndReveal, { passive: true });
+
+  // Hook into Lenis smooth-scroll
+  if (typeof lenis !== 'undefined' && lenis) {
+    lenis.on('scroll', checkAndReveal);
+  }
+
+  // IntersectionObserver for native off-thread acceleration
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.05,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+  }
 });
